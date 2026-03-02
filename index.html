@@ -938,9 +938,9 @@
             <span class="tag tag-firebase">Firebase</span>
             <span class="tag tag-rest">Stripe</span>
           </div>
-          <div class="project-title">ShopZen — E-Commerce</div>
+          <div class="project-title" data-project="0">ShopZen — E-Commerce</div>
           <div class="project-desc">Full-featured shopping app with product catalog, cart, real-time inventory, and seamless checkout via Stripe.</div>
-          <a href="https://github.com/Mohamednasr11" class="project-link" target="_blank">View on GitHub →</a>
+          <button class="project-link" onclick="openModal(this.closest('.project-card'))">View Project →</button>
         </div>
       </div>
 
@@ -956,9 +956,9 @@
             <span class="tag tag-dart">Enterprise</span>
             <span class="tag tag-ui">Security</span>
           </div>
-          <div class="project-title">TrustSafe — Document Mgmt</div>
+          <div class="project-title" data-project="1">TrustSafe — Document Mgmt</div>
           <div class="project-desc">Enterprise-grade secure document management system with advanced encryption and access controls.</div>
-          <a href="https://github.com/Mohamednasr11" class="project-link" target="_blank">View on GitHub →</a>
+          <button class="project-link" onclick="openModal(this.closest('.project-card'))">View Project →</button>
         </div>
       </div>
 
@@ -974,9 +974,9 @@
             <span class="tag tag-firebase">Firebase</span>
             <span class="tag tag-ui">UI/UX</span>
           </div>
-          <div class="project-title">Food Delivery App</div>
+          <div class="project-title" data-project="2">Food Delivery App</div>
           <div class="project-desc">Real-time order tracking, geo-location delivery, and beautiful animated menus for a food delivery platform.</div>
-          <a href="https://github.com/Mohamednasr11" class="project-link" target="_blank">View on GitHub →</a>
+          <button class="project-link" onclick="openModal(this.closest('.project-card'))">View Project →</button>
         </div>
       </div>
 
@@ -992,9 +992,9 @@
             <span class="tag tag-firebase">Firebase</span>
             <span class="tag tag-state">Bloc</span>
           </div>
-          <div class="project-title">Real-time Chat App</div>
+          <div class="project-title" data-project="3">Real-time Chat App</div>
           <div class="project-desc">End-to-end encrypted messaging with real-time updates, media sharing, and push notifications via FCM.</div>
-          <a href="https://github.com/Mohamednasr11" class="project-link" target="_blank">View on GitHub →</a>
+          <button class="project-link" onclick="openModal(this.closest('.project-card'))">View Project →</button>
         </div>
       </div>
 
@@ -1010,9 +1010,9 @@
             <span class="tag tag-rest">REST API</span>
             <span class="tag tag-ui">Charts</span>
           </div>
-          <div class="project-title">Finance Tracker</div>
+          <div class="project-title" data-project="4">Finance Tracker</div>
           <div class="project-desc">Personal finance management with budgeting, expense tracking, beautiful charts, and smart insights.</div>
-          <a href="https://github.com/Mohamednasr11" class="project-link" target="_blank">View on GitHub →</a>
+          <button class="project-link" onclick="openModal(this.closest('.project-card'))">View Project →</button>
         </div>
       </div>
 
@@ -1028,9 +1028,9 @@
             <span class="tag tag-firebase">Firebase</span>
             <span class="tag tag-dart">Healthcare</span>
           </div>
-          <div class="project-title">Healthcare Booking</div>
+          <div class="project-title" data-project="5">Healthcare Booking</div>
           <div class="project-desc">Doctor appointment booking with calendar integration, video consultations, and medical history tracking.</div>
-          <a href="https://github.com/Mohamednasr11" class="project-link" target="_blank">View on GitHub →</a>
+          <button class="project-link" onclick="openModal(this.closest('.project-card'))">View Project →</button>
         </div>
       </div>
     </div>
@@ -1204,6 +1204,223 @@
   100% { transform: scale(1.5); opacity: 0; }
 }
 </style>
+
+
+<!-- ===== PROJECT MODAL ===== -->
+<div id="projectModal" style="display:none;position:fixed;inset:0;z-index:9000;align-items:center;justify-content:center;padding:20px;">
+  <!-- Backdrop -->
+  <div id="modalBackdrop" onclick="closeModal()" style="position:absolute;inset:0;background:rgba(0,0,0,0.85);backdrop-filter:blur(8px);"></div>
+
+  <!-- Modal Box -->
+  <div id="modalBox" style="position:relative;z-index:1;background:#0d1120;border:1px solid rgba(0,212,255,0.2);border-radius:24px;width:100%;max-width:480px;overflow:hidden;box-shadow:0 40px 100px rgba(0,0,0,0.7);transform:scale(0.9);opacity:0;transition:all 0.35s cubic-bezier(0.16,1,0.3,1);">
+    
+    <!-- Close -->
+    <button onclick="closeModal()" style="position:absolute;top:16px;right:16px;z-index:10;width:36px;height:36px;border-radius:50%;background:rgba(0,0,0,0.6);border:1px solid rgba(255,255,255,0.1);color:#fff;font-size:18px;cursor:pointer;display:flex;align-items:center;justify-content:center;line-height:1;transition:background 0.2s;" onmouseover="this.style.background='#ef4444'" onmouseout="this.style.background='rgba(0,0,0,0.6)'">✕</button>
+
+    <!-- Slider Area -->
+    <div style="position:relative;height:360px;background:#060810;overflow:hidden;">
+      <!-- Slides container -->
+      <div id="slidesContainer" style="display:flex;height:100%;transition:transform 0.45s cubic-bezier(0.16,1,0.3,1);"></div>
+
+      <!-- Prev / Next -->
+      <button id="prevBtn" onclick="slideMove(-1)" style="position:absolute;left:12px;top:50%;transform:translateY(-50%);z-index:5;width:40px;height:40px;border-radius:50%;background:rgba(0,0,0,0.6);border:1px solid rgba(255,255,255,0.12);color:#fff;font-size:20px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all 0.2s;" onmouseover="this.style.background='#00D4FF';this.style.color='#060810'" onmouseout="this.style.background='rgba(0,0,0,0.6)';this.style.color='#fff'">‹</button>
+      <button id="nextBtn" onclick="slideMove(1)" style="position:absolute;right:12px;top:50%;transform:translateY(-50%);z-index:5;width:40px;height:40px;border-radius:50%;background:rgba(0,0,0,0.6);border:1px solid rgba(255,255,255,0.12);color:#fff;font-size:20px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all 0.2s;" onmouseover="this.style.background='#00D4FF';this.style.color='#060810'" onmouseout="this.style.background='rgba(0,0,0,0.6)';this.style.color='#fff'">›</button>
+
+      <!-- Counter -->
+      <div id="slideCounter" style="position:absolute;bottom:12px;left:50%;transform:translateX(-50%);background:rgba(0,0,0,0.7);color:#fff;font-size:12px;padding:4px 12px;border-radius:20px;font-family:'DM Sans',sans-serif;font-weight:500;letter-spacing:0.05em;"></div>
+    </div>
+
+    <!-- Dots -->
+    <div id="modalDots" style="display:flex;justify-content:center;gap:6px;padding:14px 0 8px;background:#0d1120;"></div>
+
+    <!-- Info -->
+    <div style="padding:20px 28px 28px;">
+      <h3 id="modalTitle" style="font-family:'Syne',sans-serif;font-size:22px;font-weight:800;color:#F0F4FF;letter-spacing:-0.5px;margin-bottom:8px;"></h3>
+      <p id="modalDesc" style="color:#6B7A9F;font-size:14px;line-height:1.6;margin-bottom:14px;"></p>
+      <div id="modalTags" style="display:flex;flex-wrap:wrap;gap:6px;"></div>
+    </div>
+  </div>
+</div>
+
+<script>
+// ===== PROJECT DATA =====
+const PROJECTS = [
+  {
+    title: "ShopZen — E-Commerce",
+    desc: "Full-featured shopping app with product catalog, cart, real-time inventory, and seamless checkout via Stripe.",
+    tags: ["Flutter", "Firebase", "Stripe", "BLoC"],
+    emoji: "🛍️",
+    colors: ["#0d1a2e","#0a2744","#0d2255","#091d3d","#0a1f4a"],
+    screens: 5
+  },
+  {
+    title: "TrustSafe — Document Mgmt",
+    desc: "Enterprise-grade secure document management system with advanced encryption and access controls.",
+    tags: ["Flutter", "Enterprise", "Security", "Cloud"],
+    emoji: "🔐",
+    colors: ["#0d1f2e","#102030","#0a1825","#0d2235","#081520"],
+    screens: 4
+  },
+  {
+    title: "Food Delivery App",
+    desc: "Real-time order tracking, geo-location delivery, and beautiful animated menus for a food delivery platform.",
+    tags: ["Flutter", "Firebase", "Maps", "UI/UX"],
+    emoji: "🥗",
+    colors: ["#0f1a0f","#0a200f","#0d1f0d","#081808","#0a1c0a"],
+    screens: 5
+  },
+  {
+    title: "Real-time Chat App",
+    desc: "End-to-end encrypted messaging with real-time updates, media sharing, and push notifications via FCM.",
+    tags: ["Flutter", "Firebase", "BLoC", "FCM"],
+    emoji: "💬",
+    colors: ["#1a100d","#2a1208","#1f1009","#150c07","#200e08"],
+    screens: 4
+  },
+  {
+    title: "Finance Tracker",
+    desc: "Personal finance management with budgeting, expense tracking, beautiful charts, and smart insights.",
+    tags: ["Flutter", "REST API", "Charts", "SQLite"],
+    emoji: "💰",
+    colors: ["#0d0d20","#150d2a","#100d25","#0a0a1a","#120d28"],
+    screens: 5
+  },
+  {
+    title: "Healthcare Booking",
+    desc: "Doctor appointment booking with calendar integration, video consultations, and medical history tracking.",
+    tags: ["Flutter", "Firebase", "Healthcare", "Video"],
+    emoji: "🏥",
+    colors: ["#0d1a1a","#0a2020","#0d1f1f","#08181a","#0a1c1c"],
+    screens: 4
+  }
+];
+
+// Screen label data for each slide
+const SCREEN_LABELS = [
+  ["Splash Screen","Home Screen","Product Details","Shopping Cart","Checkout"],
+  ["Login Screen","Dashboard","Document View","Settings"],
+  ["Onboarding","Home & Menu","Restaurant Details","Order Tracking","Profile"],
+  ["Chat List","Conversation","Media Picker","Profile Settings"],
+  ["Dashboard","Add Transaction","Analytics","Budget View","Reports"],
+  ["Home","Find Doctors","Doctor Profile","Book Appointment"],
+];
+
+let currentProject = 0;
+let currentSlide = 0;
+let totalSlides = 0;
+
+function openModal(card) {
+  const titleEl = card.querySelector('[data-project]');
+  const idx = parseInt(titleEl.getAttribute('data-project'));
+  currentProject = idx;
+  currentSlide = 0;
+  renderModal();
+  const modal = document.getElementById('projectModal');
+  const box = document.getElementById('modalBox');
+  modal.style.display = 'flex';
+  setTimeout(() => {
+    box.style.transform = 'scale(1)';
+    box.style.opacity = '1';
+  }, 10);
+  document.addEventListener('keydown', handleKey);
+}
+
+function closeModal() {
+  const modal = document.getElementById('projectModal');
+  const box = document.getElementById('modalBox');
+  box.style.transform = 'scale(0.9)';
+  box.style.opacity = '0';
+  setTimeout(() => { modal.style.display = 'none'; }, 300);
+  document.removeEventListener('keydown', handleKey);
+}
+
+function handleKey(e) {
+  if (e.key === 'Escape') closeModal();
+  if (e.key === 'ArrowLeft') slideMove(-1);
+  if (e.key === 'ArrowRight') slideMove(1);
+}
+
+function renderModal() {
+  const p = PROJECTS[currentProject];
+  totalSlides = p.screens;
+
+  // Build slides
+  const container = document.getElementById('slidesContainer');
+  container.innerHTML = '';
+  container.style.width = (totalSlides * 100) + '%';
+  container.style.transform = 'translateX(0)';
+
+  const labels = SCREEN_LABELS[currentProject];
+
+  for (let i = 0; i < totalSlides; i++) {
+    const slide = document.createElement('div');
+    slide.style.cssText = `width:${100/totalSlides}%;flex-shrink:0;height:100%;background:linear-gradient(135deg,${p.colors[i % p.colors.length]},${p.colors[(i+1) % p.colors.length]});display:flex;flex-direction:column;align-items:center;justify-content:center;position:relative;`;
+
+    // Phone mockup
+    slide.innerHTML = `
+      <div style="width:180px;height:300px;background:rgba(255,255,255,0.04);border:2px solid rgba(255,255,255,0.12);border-radius:28px;display:flex;flex-direction:column;align-items:center;justify-content:center;position:relative;box-shadow:0 20px 60px rgba(0,0,0,0.5);">
+        <div style="width:60px;height:6px;background:rgba(255,255,255,0.15);border-radius:3px;position:absolute;top:12px;"></div>
+        <div style="font-size:56px;margin-bottom:12px;">${p.emoji}</div>
+        <div style="color:rgba(255,255,255,0.7);font-size:11px;font-family:'DM Sans',sans-serif;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;">${labels[i] || 'Screen ' + (i+1)}</div>
+        <div style="position:absolute;bottom:14px;display:flex;gap:4px;">
+          ${[0,1,2].map(j => `<div style="width:${j===1?'16px':'6px'};height:4px;border-radius:2px;background:rgba(0,212,255,${j===1?'0.8':'0.3'});"></div>`).join('')}
+        </div>
+      </div>
+      <div style="margin-top:16px;color:rgba(0,212,255,0.6);font-size:11px;font-family:'DM Sans',sans-serif;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;">${i+1} / ${totalSlides}</div>
+    `;
+    container.appendChild(slide);
+  }
+
+  // Dots
+  const dotsEl = document.getElementById('modalDots');
+  dotsEl.innerHTML = '';
+  for (let i = 0; i < totalSlides; i++) {
+    const dot = document.createElement('button');
+    dot.onclick = () => goToSlide(i);
+    dot.style.cssText = `width:${i===0?'20px':'8px'};height:8px;border-radius:4px;border:none;cursor:pointer;transition:all 0.3s;background:${i===0?'#00D4FF':'rgba(255,255,255,0.15)'};`;
+    dot.id = 'dot-' + i;
+    dotsEl.appendChild(dot);
+  }
+
+  // Info
+  document.getElementById('modalTitle').textContent = p.title;
+  document.getElementById('modalDesc').textContent = p.desc;
+  const tagsEl = document.getElementById('modalTags');
+  tagsEl.innerHTML = p.tags.map(t => `<span style="background:rgba(0,212,255,0.1);color:#00D4FF;border:1px solid rgba(0,212,255,0.2);padding:4px 12px;border-radius:20px;font-size:11px;font-weight:600;letter-spacing:0.04em;text-transform:uppercase;">${t}</span>`).join('');
+
+  updateSlideUI();
+}
+
+function goToSlide(idx) {
+  currentSlide = idx;
+  updateSlideUI();
+}
+
+function slideMove(dir) {
+  currentSlide = (currentSlide + dir + totalSlides) % totalSlides;
+  updateSlideUI();
+}
+
+function updateSlideUI() {
+  const container = document.getElementById('slidesContainer');
+  container.style.transform = `translateX(-${currentSlide * (100 / totalSlides)}%)`;
+
+  // Update dots
+  for (let i = 0; i < totalSlides; i++) {
+    const dot = document.getElementById('dot-' + i);
+    if (!dot) continue;
+    dot.style.width = i === currentSlide ? '20px' : '8px';
+    dot.style.background = i === currentSlide ? '#00D4FF' : 'rgba(255,255,255,0.15)';
+  }
+
+  document.getElementById('slideCounter').textContent = (currentSlide + 1) + ' / ' + totalSlides;
+}
+
+// Button style fix
+document.querySelectorAll('.project-link').forEach(btn => {
+  btn.style.cssText += 'background:none;border:none;cursor:pointer;padding:0;font-family:inherit;';
+});
+</script>
 
 </body>
 </html>
