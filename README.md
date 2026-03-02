@@ -27,7 +27,7 @@ portfolio/
 3. Go to **Settings → Pages**
 4. Set source to `main` branch, `/ (root)`
 5. Click **Save** — your site will be live at:
-   `https://Mohamednasr11.github.io/portfolio`
+   `https://Mohamednasr11.github.io/MyPortfolio`
 
 ## 📬 Contact
 
