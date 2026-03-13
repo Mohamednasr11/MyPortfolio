@@ -970,18 +970,18 @@
 
       <!-- Project 3 -->
       <div class="project-card reveal">
-        <div class="project-thumb" style="background:linear-gradient(135deg,#0f1a0f,#0a200f)">
-          <div class="project-thumb-bg">🥗</div>
+        <div class="project-thumb">
+          <img src="assets/coffeeshop.png" alt="Coffee Shop App">
           <div class="project-thumb-overlay"></div>
         </div>
         <div class="project-body">
           <div class="project-tags">
             <span class="tag tag-flutter">Flutter</span>
-            <span class="tag tag-firebase">Firebase</span>
             <span class="tag tag-ui">UI/UX</span>
+            <span class="tag tag-dart">Dart</span>
           </div>
-          <div class="project-title" data-project="2">Food Delivery App</div>
-          <div class="project-desc">Real-time order tracking, geo-location delivery, and beautiful animated menus for a food delivery platform.</div>
+          <div class="project-title" data-project="2">Brew & Bloom — Coffee Shop</div>
+          <div class="project-desc">A premium coffee ordering experience with custom brewing options, loyalty rewards, and real-time delivery tracking.</div>
           <button class="project-link" onclick="openModal(this.closest('.project-card'))">View Project →</button>
         </div>
       </div>
@@ -1270,12 +1270,18 @@ const PROJECTS = [
     imagePrefix: "assets/trustsafe_"
   },
   {
-    title: "Food Delivery App",
-    desc: "Real-time order tracking, geo-location delivery, and beautiful animated menus for a food delivery platform.",
-    tags: ["Flutter", "Firebase", "Maps", "UI/UX"],
-    emoji: "🥗",
-    colors: ["#0f1a0f","#0a200f","#0d1f0d","#081808","#0a1c0a"],
-    screens: 5
+    title: "Brew & Bloom — Coffee Shop",
+    desc: "A premium coffee ordering experience with custom brewing options, loyalty rewards, and real-time delivery tracking.",
+    tags: ["Flutter", "UI/UX", "Dart", "Animation"],
+    emoji: "☕",
+    colors: ["#2d1b14","#3e2723","#4e342e","#5d4037","#6d4c41"],
+    images: [
+      "assets/High-Fidelity ( Onboarding ).png",
+      "assets/High-Fidelity ( Home ).png",
+      "assets/High-Fidelity ( Detail Item ).png",
+      "assets/High-Fidelity ( Order ).png",
+      "assets/High-Fidelity ( Delivery ).png"
+    ]
   },
   {
     title: "Real-time Chat App",
@@ -1350,7 +1356,7 @@ function handleKey(e) {
 
 function renderModal() {
   const p = PROJECTS[currentProject];
-  totalSlides = p.screens;
+  totalSlides = p.images ? p.images.length : p.screens;
 
   // Build slides
   const container = document.getElementById('slidesContainer');
@@ -1364,7 +1370,12 @@ function renderModal() {
     const slide = document.createElement('div');
     slide.style.cssText = `width:${100/totalSlides}%;flex-shrink:0;height:100%;background:linear-gradient(135deg,${p.colors[i % p.colors.length]},${p.colors[(i+1) % p.colors.length]});display:flex;flex-direction:column;align-items:center;justify-content:center;position:relative;`;
 
-    const imagePath = p.imagePrefix ? `${p.imagePrefix}${i}.jpeg` : null;
+    let imagePath = null;
+    if (p.images) {
+        imagePath = p.images[i];
+    } else if (p.imagePrefix) {
+        imagePath = `${p.imagePrefix}${i}.jpeg`;
+    }
 
     // Phone mockup
     slide.innerHTML = `
