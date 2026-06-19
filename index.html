@@ -985,59 +985,6 @@
         </div>
       </div>
 
-      <!-- Project 4 -->
-      <div class="project-card reveal">
-        <div class="project-thumb" style="background:linear-gradient(135deg,#1a100d,#2a1208)">
-          <div class="project-thumb-bg">💬</div>
-          <div class="project-thumb-overlay"></div>
-        </div>
-        <div class="project-body">
-          <div class="project-tags">
-            <span class="tag tag-flutter">Flutter</span>
-            <span class="tag tag-firebase">Firebase</span>
-            <span class="tag tag-state">Bloc</span>
-          </div>
-          <div class="project-title" data-project="3">Real-time Chat App</div>
-          <div class="project-desc">End-to-end encrypted messaging with real-time updates, media sharing, and push notifications via FCM.</div>
-          <button class="project-link" onclick="openModal(this.closest('.project-card'))">View Project →</button>
-        </div>
-      </div>
-
-      <!-- Project 5 -->
-      <div class="project-card reveal">
-        <div class="project-thumb" style="background:linear-gradient(135deg,#0d0d20,#150d2a)">
-          <div class="project-thumb-bg">💰</div>
-          <div class="project-thumb-overlay"></div>
-        </div>
-        <div class="project-body">
-          <div class="project-tags">
-            <span class="tag tag-flutter">Flutter</span>
-            <span class="tag tag-rest">REST API</span>
-            <span class="tag tag-ui">Charts</span>
-          </div>
-          <div class="project-title" data-project="4">Finance Tracker</div>
-          <div class="project-desc">Personal finance management with budgeting, expense tracking, beautiful charts, and smart insights.</div>
-          <button class="project-link" onclick="openModal(this.closest('.project-card'))">View Project →</button>
-        </div>
-      </div>
-
-      <!-- Project 6 -->
-      <div class="project-card reveal">
-        <div class="project-thumb" style="background:linear-gradient(135deg,#0d1a1a,#0a2020)">
-          <div class="project-thumb-bg">🏥</div>
-          <div class="project-thumb-overlay"></div>
-        </div>
-        <div class="project-body">
-          <div class="project-tags">
-            <span class="tag tag-flutter">Flutter</span>
-            <span class="tag tag-firebase">Firebase</span>
-            <span class="tag tag-dart">Healthcare</span>
-          </div>
-          <div class="project-title" data-project="5">Healthcare Booking</div>
-          <div class="project-desc">Doctor appointment booking with calendar integration, video consultations, and medical history tracking.</div>
-          <button class="project-link" onclick="openModal(this.closest('.project-card'))">View Project →</button>
-        </div>
-      </div>
     </div>
   </div>
 </section>
@@ -1282,30 +1229,6 @@ const PROJECTS = [
       "assets/High-Fidelity ( Delivery ).png"
     ]
   },
-  {
-    title: "Real-time Chat App",
-    desc: "End-to-end encrypted messaging with real-time updates, media sharing, and push notifications via FCM.",
-    tags: ["Flutter", "Firebase", "BLoC", "FCM"],
-    emoji: "💬",
-    colors: ["#1a100d","#2a1208","#1f1009","#150c07","#200e08"],
-    screens: 4
-  },
-  {
-    title: "Finance Tracker",
-    desc: "Personal finance management with budgeting, expense tracking, beautiful charts, and smart insights.",
-    tags: ["Flutter", "REST API", "Charts", "SQLite"],
-    emoji: "💰",
-    colors: ["#0d0d20","#150d2a","#100d25","#0a0a1a","#120d28"],
-    screens: 5
-  },
-  {
-    title: "Healthcare Booking",
-    desc: "Doctor appointment booking with calendar integration, video consultations, and medical history tracking.",
-    tags: ["Flutter", "Firebase", "Healthcare", "Video"],
-    emoji: "🏥",
-    colors: ["#0d1a1a","#0a2020","#0d1f1f","#08181a","#0a1c1c"],
-    screens: 4
-  }
 ];
 
 // Screen label data for each slide
@@ -1313,9 +1236,6 @@ const SCREEN_LABELS = [
   ["Splash Screen","Home Screen","Product Details","Shopping Cart","Checkout"],
   ["Login Screen","Dashboard","Document View","Settings"],
   ["Onboarding","Home & Menu","Restaurant Details","Order Tracking","Profile"],
-  ["Chat List","Conversation","Media Picker","Profile Settings"],
-  ["Dashboard","Add Transaction","Analytics","Budget View","Reports"],
-  ["Home","Find Doctors","Doctor Profile","Book Appointment"],
 ];
 
 let currentProject = 0;
